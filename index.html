@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>document.documentElement.classList.add('js-enabled');</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alexandro Lodieu — Video Editor Portfolio</title>
+  <style>
+    :root {
+      --bg: #f6f3ee;
+      --ink: #171717;
+      --muted: #6f6a64;
+      --card: #ffffff;
+      --line: #e4ddd3;
+      --accent: #ff7a1a;
+      --accent-dark: #d95f00;
+      --blue: #2563eb;
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --shadow: 0 24px 70px rgba(23, 23, 23, 0.09);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    nav {
+      position: sticky;
+      top: 18px;
+      z-index: 10;
+      margin: 18px auto 0;
+      width: min(1180px, calc(100% - 32px));
+      background: rgba(255, 255, 255, 0.74);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(228, 221, 211, 0.9);
+      border-radius: 999px;
+      padding: 12px 14px 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 10px 30px rgba(23, 23, 23, 0.05);
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      padding: 10px 14px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 650;
+      border-radius: 999px;
+    }
+
+    .nav-links a:hover {
+      background: #f1ebe2;
+      color: var(--ink);
+    }
+
+    .nav-cta {
+      background: var(--ink);
+      color: white !important;
+    }
+
+    .hero {
+      min-height: 88vh;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 42px;
+      padding: 88px 0 70px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 14px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 30px rgba(23, 23, 23, 0.04);
+    }
+
+    .status-dot {
+      width: 9px;
+      height: 9px;
+      background: #22c55e;
+      border-radius: 999px;
+      box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.13);
+    }
+
+    h1 {
+      font-size: clamp(54px, 8vw, 104px);
+      line-height: 0.92;
+      letter-spacing: -0.08em;
+      margin-bottom: 24px;
+      max-width: 780px;
+    }
+
+    .accent {
+      color: var(--accent);
+    }
+
+    .hero-copy {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-weight: 800;
+      transition: 0.18s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background: #fff;
+      border-color: var(--line);
+      color: var(--ink);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 34px rgba(23, 23, 23, 0.11);
+    }
+
+    .hero-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      transform: rotate(1.3deg);
+    }
+
+    .video-frame {
+      min-height: 520px;
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255, 122, 26, 0.34), transparent 27%),
+        linear-gradient(145deg, #1f2937, #0f172a);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+      color: #fff;
+    }
+
+    .video-frame::before {
+      content: "VIDEO CV";
+      position: absolute;
+      top: 22px;
+      left: 24px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      opacity: 0.72;
+    }
+
+    .play {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 82px;
+      height: 82px;
+      background: rgba(255,255,255,0.92);
+      color: var(--ink);
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      font-size: 30px;
+      font-weight: 900;
+      box-shadow: 0 18px 48px rgba(0,0,0,0.25);
+    }
+
+    .video-meta {
+      position: relative;
+      z-index: 1;
+    }
+
+    .video-meta h3 {
+      font-size: 26px;
+      letter-spacing: -0.04em;
+      margin-bottom: 6px;
+    }
+
+    .video-meta p {
+      color: rgba(255,255,255,0.72);
+    }
+
+    .section {
+      padding: 72px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .section-kicker {
+      color: var(--accent-dark);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: clamp(34px, 5vw, 62px);
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+    }
+
+    .section-description {
+      max-width: 450px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 0.7fr;
+      gap: 18px;
+    }
+
+    .tile {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: 0 12px 40px rgba(23,23,23,0.04);
+    }
+
+    .tile h3 {
+      font-size: 22px;
+      letter-spacing: -0.04em;
+      margin-bottom: 12px;
+    }
+
+    .tile p {
+      color: var(--muted);
+    }
+
+    .metric {
+      font-size: 52px;
+      font-weight: 900;
+      letter-spacing: -0.07em;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+
+    .project {
+      display: block;
+      grid-column: span 6;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: 0 16px 55px rgba(23,23,23,0.05);
+      transition: 0.18s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .project.wide {
+      grid-column: span 12;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+    }
+
+    .thumb {
+      min-height: 260px;
+      background: linear-gradient(135deg, #111827, #334155);
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      padding: 22px;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .thumb.orange {
+      background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.28), transparent 22%), linear-gradient(135deg, #ff7a1a, #111827);
+    }
+
+    .thumb.blue {
+      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.24), transparent 24%), linear-gradient(135deg, #2563eb, #0f172a);
+    }
+
+    .thumb.green {
+      background: radial-gradient(circle at 70% 25%, rgba(255,255,255,0.24), transparent 24%), linear-gradient(135deg, #16a34a, #111827);
+    }
+
+    .thumb.purple {
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.22), transparent 24%), linear-gradient(135deg, #7c3aed, #111827);
+    }
+
+    .thumb::after {
+      content: "";
+      position: absolute;
+      width: 230px;
+      height: 230px;
+      border: 1px solid rgba(255,255,255,0.26);
+      border-radius: 50%;
+      right: -70px;
+      top: -70px;
+    }
+
+    .thumb-label {
+      position: relative;
+      z-index: 1;
+      font-weight: 900;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.82;
+    }
+
+    .thumb.has-video::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0.1));
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .thumb.has-video video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .thumb.has-video::after {
+      z-index: 1;
+    }
+
+    .thumb.has-video .thumb-label {
+      z-index: 2;
+    }
+
+    .thumb.vertical-video {
+      min-height: 325px;
+    }
+
+    .thumb.vertical-video video {
+      object-fit: contain;
+    }
+
+    .text-link {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .text-link:hover {
+      color: var(--accent);
+    }
+
+    .tile.language-card {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .tile.language-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 38px rgba(23, 23, 23, 0.08);
+    }
+
+    .tile.language-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .tile.language-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.12;
+      z-index: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      background: 
+        /* French: blue, white, red */
+        radial-gradient(circle at 15% 15%, rgba(37, 99, 235, 0.4) 0%, transparent 40%),
+        radial-gradient(circle at 25% 15%, rgba(255, 255, 255, 0.6) 0%, transparent 40%),
+        radial-gradient(circle at 35% 15%, rgba(239, 68, 68, 0.4) 0%, transparent 40%),
+        
+        /* Spanish: red and yellow */
+        radial-gradient(circle at 85% 20%, rgba(239, 68, 68, 0.4) 0%, transparent 35%),
+        radial-gradient(circle at 75% 30%, rgba(234, 179, 8, 0.4) 0%, transparent 35%),
+        
+        /* English: blue, red, white */
+        radial-gradient(circle at 20% 85%, rgba(37, 99, 235, 0.3) 0%, transparent 40%),
+        radial-gradient(circle at 30% 75%, rgba(239, 68, 68, 0.3) 0%, transparent 40%),
+        
+        /* Finnish: blue and white */
+        radial-gradient(circle at 80% 80%, rgba(37, 99, 235, 0.4) 0%, transparent 45%),
+        radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.6) 0%, transparent 45%);
+    }
+
+    .tile.language-card:hover::before {
+      opacity: 0.2;
+    }
+
+    .js-enabled .languages-list .lang {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .languages-list.visible .lang {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .js-enabled .languages-list .lang:nth-child(1) { transition-delay: 0.1s; }
+    .js-enabled .languages-list .lang:nth-child(2) { transition-delay: 0.25s; }
+    .js-enabled .languages-list .lang:nth-child(3) { transition-delay: 0.4s; }
+    .js-enabled .languages-list .lang:nth-child(4) { transition-delay: 0.55s; }
+
+    .sound-toggle {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      z-index: 3;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s ease;
+    }
+
+    .sound-toggle:hover {
+      background: #ffffff;
+      transform: scale(1.05);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .sound-toggle svg {
+      width: 20px;
+      height: 20px;
+      display: block;
+    }
+
+    /* Mute/unmute state styling */
+    .sound-toggle.unmuted .sound-off {
+      display: none;
+    }
+
+    .sound-toggle:not(.unmuted) .sound-on {
+      display: none;
+    }
+
+    .project-body {
+      padding: 26px;
+    }
+
+    .project-body h3 {
+      font-size: 28px;
+      letter-spacing: -0.05em;
+      margin-bottom: 8px;
+    }
+
+    .role {
+      color: var(--accent-dark);
+      font-weight: 850;
+      margin-bottom: 12px;
+    }
+
+    .project-body p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .project-link {
+      display: inline-flex;
+      font-weight: 900;
+      color: var(--ink);
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      background: #f6f3ee;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 13px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .contact-box {
+      background: var(--ink);
+      color: #fff;
+      border-radius: 42px;
+      padding: 60px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 30px;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .contact-box::after {
+      content: "";
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      background: rgba(255, 122, 26, 0.22);
+      right: -90px;
+      top: -90px;
+    }
+
+    .contact-box h2 {
+      color: #fff;
+      margin-bottom: 18px;
+    }
+
+    .contact-box p {
+      color: rgba(255,255,255,0.7);
+      font-size: 18px;
+      max-width: 560px;
+    }
+
+    .contact-actions {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      gap: 14px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .contact-actions .btn-primary {
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .contact-actions .btn-secondary {
+      background: transparent;
+      border-color: rgba(255,255,255,0.2);
+      color: #fff;
+    }
+
+    footer {
+      padding: 34px 0 50px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 14px;
+    }
+
+
+    .real-video {
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .real-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 26px;
+      filter: brightness(1.08);
+    }
+
+    .real-video .video-meta {
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      z-index: 2;
+    }
+
+    .real-video::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.45), rgba(0,0,0,0.02));
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .real-video::before {
+      z-index: 2;
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .about-grid,
+      .project.wide,
+      .skills-grid,
+      .contact-box {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 60px;
+      }
+
+      .video-frame {
+        min-height: 420px;
+      }
+
+      .project,
+      .project.wide {
+        grid-column: span 12;
+      }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .contact-box {
+        padding: 36px 24px;
+      }
+
+      .contact-actions {
+        justify-content: flex-start;
+      }
+
+      .nav-links a:not(.nav-cta) {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="brand" href="#">Alexandro Lodieu</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Work</a>
+      <a href="#skills">Skills</a>
+      <a class="nav-cta" href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <main class="page">
+
+    <header class="hero">
+      <div>
+        <div class="eyebrow"><span class="status-dot"></span> Available for video editing projects</div>
+        <h1>Video Editor & <span class="accent">Content Creator</span></h1>
+        <p class="hero-copy">
+          I create short-form videos, social media content and engaging visual stories that capture attention,
+          tell a story and keep people watching.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">View My Work</a>
+          <a class="btn btn-secondary" href="https://drive.google.com/file/d/12XsMLiUtk_Wedkic3z-WvDSDJHSo727y/view?usp=sharing" target="_blank">Watch Video CV</a>
+        </div>
+      </div>
+
+      <a class="hero-card" href="https://drive.google.com/file/d/12XsMLiUtk_Wedkic3z-WvDSDJHSo727y/view?usp=sharing" target="_blank">
+        <div class="video-frame real-video">
+          <video autoplay muted loop playsinline controls>
+            <source src="videocvalex.mp4" type="video/mp4">
+          </video>
+          <button class="sound-toggle" aria-label="Toggle Sound">
+            <svg class="sound-on" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+            <svg class="sound-off" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+          </button>
+          <div class="video-meta">
+            <h3>Video CV</h3>
+            <p>Click to watch the full version.</p>
+          </div>
+        </div>
+      </a>
+    </header>
+
+    <section class="section" id="about">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">About me</div>
+          <h2>Creative, reliable and always improving.</h2>
+        </div>
+        <p class="section-description">
+          French student based in Finland, currently focused on video editing, short-form content and creative visual storytelling.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <div class="tile">
+          <h3>Profile</h3>
+          <p>
+            I am a video editor and content creator with experience in video production,
+            social media content and freelance projects. I enjoy creative work, learning new skills
+            and creating content that catches the viewer's attention.
+          </p>
+        </div>
+
+        <div class="tile">
+          <h3>What I do</h3>
+          <p>
+            I work with short videos, subtitles, rhythm, storytelling, camera work and social media content.
+            My goal is to create videos that feel clear, dynamic and engaging.
+          </p>
+        </div>
+
+        <div class="tile language-card">
+          <div class="metric">4</div>
+          <h3>Languages</h3>
+          <p class="languages-list">
+            <span class="lang">French</span>, 
+            <span class="lang">Spanish</span>, 
+            <span class="lang">English</span> and 
+            <span class="lang">Finnish</span>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Selected work</div>
+          <h2>Projects that show my editing and production skills.</h2>
+        </div>
+        <p class="section-description">
+          Full portfolio available online: <a href="https://alexandrolodieu.github.io/portfolio/" target="_blank" style="text-decoration: underline; color: inherit;">https://alexandrolodieu.github.io/portfolio/</a>
+        </p>
+      </div>
+
+      <div class="projects">
+        <a class="project wide" href="https://youtu.be/QUAGUvZIzmk?si=nIgY70K6E5QPp8A2" target="_blank">
+          <div class="thumb has-video orange">
+            <video autoplay muted loop playsinline>
+              <source src="trainbotvideo.mp4" type="video/mp4">
+            </video>
+            <span class="thumb-label">Company video</span>
+          </div>
+          <div class="project-body">
+            <h3>TrainBot Oy</h3>
+            <div class="role">Freelance Video Producer</div>
+            <p>
+              Filmed, scripted and edited a marketing video for TrainBot Oy, a Finnish company developing badminton training robots. More information is available at <span class="text-link" data-url="https://trainbot.tech/">trainbot.tech</span>.
+            </p>
+            <span class="project-link">View Project</span>
+          </div>
+        </a>
+
+        <a class="project" href="https://www.youtube.com/watch?v=umlUYT9OoaU" target="_blank">
+          <div class="thumb has-video vertical-video blue">
+            <video autoplay muted loop playsinline>
+              <source src="maximelim.mp4" type="video/mp4">
+            </video>
+            <span class="thumb-label">Short-form editing</span>
+          </div>
+          <div class="project-body">
+            <h3>Maxime Lim</h3>
+            <div class="role">Video Editor</div>
+            <p>
+              Edited short-form content for French creator <span class="text-link" data-url="https://www.youtube.com/@maximeelim">Maxime Lim</span>, whose content reaches over 100,000 followers across social media. Worked on engaging videos while meeting deadlines and quality expectations.
+            </p>
+            <span class="project-link">View Project</span>
+          </div>
+        </a>
+
+        <a class="project" href="https://drive.google.com/file/d/1GNQPf9Dg1BK58rsxz7cdzYp_zxnKAqRB/view?usp=sharing" target="_blank">
+          <div class="thumb has-video vertical-video green">
+            <video autoplay muted loop playsinline>
+              <source src="ascension.mp4" type="video/mp4">
+            </video>
+            <span class="thumb-label">Educational shorts</span>
+          </div>
+          <div class="project-body">
+            <h3>Ascension Maths</h3>
+            <div class="role">Video Editor</div>
+            <p>
+              Edited mathematics-focused short videos for Ascension Maths, a second channel connected to Maxime Lim.
+            </p>
+            <span class="project-link">View Project</span>
+          </div>
+        </a>
+
+        <a class="project" href="https://www.instagram.com/aalexandrolodieu/reel/DPj6sfJjBLz/" target="_blank">
+          <div class="thumb has-video vertical-video purple">
+            <video autoplay muted loop playsinline>
+              <source src="arctic.mp4" type="video/mp4">
+            </video>
+            <span class="thumb-label">Sports event</span>
+          </div>
+          <div class="project-body">
+            <h3>Arctic Open 2025</h3>
+            <div class="role">Media Volunteer</div>
+            <p>
+              Captured photo and video content during <span class="text-link" data-url="https://www.arcticopen.fi/">Arctic Open 2025</span>, one of Europe's major international badminton tournaments, contributing to social media coverage and event visibility.
+            </p>
+            <span class="project-link">View Project</span>
+          </div>
+        </a>
+
+        <a class="project" href="https://www.instagram.com/p/DSW4LLhDaFs/" target="_blank">
+          <div class="thumb has-video">
+            <video autoplay muted loop playsinline>
+              <source src="hrsk.mp4" type="video/mp4">
+            </video>
+            <span class="thumb-label">School video</span>
+          </div>
+          <div class="project-body">
+            <h3>School Promotional Video</h3>
+            <div class="role">Video Production Project</div>
+            <p>
+              Worked in a team on a promotional video for <span class="text-link" data-url="https://hrsk.fi/">Helsingin ranskalais-suomalainen koulu</span>, contributing to filming and video production.
+            </p>
+            <span class="project-link">View Project</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Skills</div>
+          <h2>Editing, content and production.</h2>
+        </div>
+        <p class="section-description">
+          Skills that support short-form video production from idea to final export.
+        </p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="tile">
+          <h3>Editing</h3>
+          <div class="pills">
+            <span class="pill">DaVinci Resolve</span>
+            <span class="pill">Short-Form Editing</span>
+            <span class="pill">Long-Form Editing</span>
+            <span class="pill">Subtitles & Captions</span>
+            <span class="pill">Color Grading</span>
+            <span class="pill">Motion Graphics</span>
+            <span class="pill">Audio Editing</span>
+          </div>
+        </div>
+
+        <div class="tile">
+          <h3>Content</h3>
+          <div class="pills">
+            <span class="pill">Storytelling</span>
+            <span class="pill">Audience Analysis</span>
+            <span class="pill">Viewer Retention</span>
+            <span class="pill">Content Strategy</span>
+            <span class="pill">Trend Adaptation</span>
+          </div>
+        </div>
+
+        <div class="tile">
+          <h3>Production</h3>
+          <div class="pills">
+            <span class="pill">Camera Operation</span>
+            <span class="pill">Video Filming</span>
+            <span class="pill">Photography</span>
+            <span class="pill">Script Planning</span>
+            <span class="pill">Adobe Photoshop</span>
+            <span class="pill">Thumbnail Design</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="contact-box">
+        <div>
+          <div class="section-kicker">Contact</div>
+          <h2>Let’s create something that people actually watch.</h2>
+          <p>
+            Interested in video editing, short-form content or creative visual content?
+            Feel free to contact me.
+          </p>
+        </div>
+
+        <div class="contact-actions">
+          <a class="btn btn-primary" href="mailto:alexandrolodieu@gmail.com">Email me</a>
+          <a class="btn btn-secondary" href="https://drive.google.com/file/d/12XsMLiUtk_Wedkic3z-WvDSDJHSo727y/view?usp=sharing" target="_blank">Video CV</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>© 2026 Alexandro Lodieu</span>
+      <a href="mailto:alexandrolodieu@gmail.com" style="font-weight:700;">alexandrolodieu@gmail.com</a>
+      <span>Video Editor • Content Creator</span>
+    </footer>
+
+  </main>
+
+  <script>
+    // Ensure videos play automatically on page load and hover
+    document.querySelectorAll('.project').forEach(card => {
+      const video = card.querySelector('video');
+      if (video) {
+        card.addEventListener('mouseenter', () => {
+          video.play().catch(err => {
+            console.log("Play failed on hover:", err);
+          });
+        });
+      }
+    });
+
+    // Also for the video CV hero card
+    const heroCard = document.querySelector('.hero-card');
+    if (heroCard) {
+      const heroVideo = heroCard.querySelector('video');
+      if (heroVideo) {
+        heroCard.addEventListener('mouseenter', () => {
+          heroVideo.play().catch(err => {
+            console.log("Hero play failed on hover:", err);
+          });
+        });
+
+        // Prevent opening the link if clicking the video controls/element
+        heroVideo.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        });
+      }
+    }
+
+    // Sound toggle logic for Video CV
+    const soundToggle = document.querySelector('.sound-toggle');
+    const cvVideo = document.querySelector('.video-frame.real-video video');
+
+    if (soundToggle && cvVideo) {
+      soundToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        cvVideo.muted = !cvVideo.muted;
+        if (cvVideo.muted) {
+          soundToggle.classList.remove('unmuted');
+        } else {
+          soundToggle.classList.add('unmuted');
+        }
+      });
+
+      // Synchronize sound button with native player mute state
+      cvVideo.addEventListener('volumechange', () => {
+        if (cvVideo.muted || cvVideo.volume === 0) {
+          soundToggle.classList.remove('unmuted');
+        } else {
+          soundToggle.classList.add('unmuted');
+        }
+      });
+    }
+
+    // Handle clicks on custom text links nested in the project cards
+    document.querySelectorAll('.text-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        window.open(link.getAttribute('data-url'), '_blank');
+      });
+    });
+
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      root: null,
+      threshold: 0.15
+    };
+
+    const aboutObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const list = entry.target.querySelector('.languages-list');
+          if (list) {
+            list.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        }
+      });
+    }, observerOptions);
+
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      aboutObserver.observe(aboutSection);
+    }
+  </script>
+</body>
+</html>
